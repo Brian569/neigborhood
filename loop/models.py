@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 
 class NeighborHood(models.Model):
@@ -12,6 +13,7 @@ class NeighborHood(models.Model):
 
 class profileUser(models.Model):
     prof_name = models.CharField(max_length=100, blank=True)
+    profile_pic = CloudinaryField('image')
     email = models.EmailField(blank=True)
     neighborHood = models.ForeignKey(NeighborHood, on_delete=models.CASCADE, blank=True)
 
