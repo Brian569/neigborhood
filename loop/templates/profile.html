@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+   <div class="container">
+       <h3>Profile page</h3>
+       
+       {% if profile %}
+
+       
+       {% for profile in profile %}
+       <h3>@{{profile.user }} </h3>
+       <p> {{profile.profile_name}} </p>
+       <p><img src=" {{profile.profile_pic.url}}" style="width: 20vmin; height: 20vmin;" alt=""> </p>
+        <p>Email :  <a href="{{profile.email}}">{{profile.email}}</a> </p>
+        <p>Neighborhood :  {{profile.neighborHood}} </p>
+        <p>Bussines : {{profile.business}} </p>
+            
+       {% endfor %}
+           
+           
+       {% endif %}
+
+       <a href="{% url 'update' %}">Update Profile</a>
+           
+   </div>
+{% endblock content %}
+    
