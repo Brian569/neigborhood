@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                {% if form.errors %}
+
+    
+                {% for error in form.errors %}
+                    <small class="btn-outline-danger"> {{error}} </small>
+                {% endfor %}
+                    
+                {% endif %}
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <input type="submit" class="btn btn-outline-success" value="login">
+                    <input type="hidden" value="{{next}}">
+                </form>
+                <small class="text-muted">
+                    Don't have an account? 
+                    <a href="/accounts/register/">Register</a>
+                </small>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+{% endblock content %}
+    
