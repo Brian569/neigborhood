@@ -15,7 +15,7 @@ class NeighborHood(models.Model):
 
     
 class profileUser(models.Model):
-    prof_name = models.CharField(max_length=100, blank=True)
+    profile_name = models.CharField(max_length=100, blank=True)
     profile_pic = CloudinaryField('image', blank=True)
     email = models.EmailField(blank=True)
 
