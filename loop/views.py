@@ -2,11 +2,18 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import *
+from django.contrib.auth import logout
+
 
 @login_required
 def home(request):
+    business = Bussiness.objects.all()
+    profiles = profileUser.objects.all()
+    neighborhoods = NeighborHood.objects.all()
 
-    return render(request, 'home.html')
+    context = {'business': business, 'profiles': profiles, 'neighborhoods': neighborhoods}
+
+    return render(request, 'home.html', context)
 
 def logout_view(request):
     logout(request)
@@ -15,10 +22,12 @@ def logout_view(request):
 @login_required
 def profile(request, prof_id):
     user = User.objects.get(pk = prof_id)
-    title = User.objects.get(pk = prof_id).username
-    profile = profileUser.objects.filter(user= prof_id)
+    
+    profile = profileUser.objects.filter(user=prof_id)
+    business = Bussiness.objects.filter(owner=prof_id)
+    neighborhood = NeighborHood.objects.all()
 
-    return render(request, 'profile.html', {"profile": profile})
+    return render(request, 'profile.html', {"profile": profile, 'business' : business, 'neighborhood' : neighborhood})
 
 
 
@@ -48,3 +57,55 @@ def updataProfile(request):
             form = ProfileupdateForm()
     
     return render(request, 'update.html', {'form' : form})
+
+@login_required
+def my_business(request, biz_id):
+    business = Bussiness.objects.filter(owner=biz_id)
+    hood = NeighborHood.objects.filter(resider=biz_id)
+
+    return render(request, 'my_business.html', {'business' : business, 'hood': hood})
+
+
+@login_required
+def business(request):
+    current_user = request.user
+
+    profile = profileUser.objects.get(user=current_user)
+
+    if request.method == 'POST':
+        form = BussinessForm(request.POST)
+
+        if form.is_valid():
+            business = form.save(commit=False)
+            business.owner = current_user
+            business.save()
+
+            return redirect('profile', current_user.id)
+        
+    else:
+        form = BussinessForm()
+    
+    return render(request, 'business.html', {'form' : form})
+
+
+@login_required
+def create_neigborhood(request):
+
+    current_user = request.user
+    profile = profileUser.objects.get(user=current_user)
+
+    if request.method == 'POST':
+        form = NeighborHoodForm(request.POST)
+
+        if form.is_valid():
+            hood = form.save(commit=False)
+            hood.resider = current_user
+            hood.save()
+            print(hood)
+
+            return redirect('profile', current_user.id)
+        
+    else:
+        form = NeighborHoodForm()
+
+    return render(request, 'neighbor.html', {'form' : form})

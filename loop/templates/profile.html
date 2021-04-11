@@ -12,17 +12,57 @@
        <h3>@{{profile.user }} </h3>
        <p> {{profile.profile_name}} </p>
        <p><img src=" {{profile.profile_pic.url}}" style="width: 20vmin; height: 20vmin;" alt=""> </p>
-        <p>Email :  <a href="{{profile.email}}">{{profile.email}}</a> </p>
-        <p>Neighborhood :  {{profile.neighborHood}} </p>
-        <p>Bussines : {{profile.business}} </p>
+       <p> <a href="{% url 'update' %}">Update Profile</a></p>
+       <p>Email :  <a href="{{profile.email}}">{{profile.email}}</a> </p>    
+       <p>Neighborhood : {{profile.location.name}} </p>
+       <p>Location : {{profile.location.location}} </p>
+        
+        <p class="text-muted">Bio : {{profile.bio}} </p>
+ 
+        <p><a href="{% url 'business' %}">Add Bussiness</a>
+         <p><a href="{% url 'neigbor' %}">Add Neighbor Hood</a>
+
+        
+        <div class="card" style="width: 15rem;">
+            {% if business %}
+            <p>Current Businesses : </p>
+            {% for biz in business %}
+            
+               <div class="card-footer">
+                 
+                <p> <a href=" {% url 'my_business' user.id %}"> {{biz.business_name}}</a></p>
+                
+               </div>           
+            {% endfor %} 
+        {% endif %}
+        </div>
+            <div class="card" style="width: 15rem;">
+            
+            
+            {% if neighborhood %} <br>
+            <p>My Neighborhood : </p>
+            {% for neb in neighborhood %}
+            <div class="card-body">
+               <p> {{neb.name}} </p>
+              
+               <p> {{neb.location}} </p>
+
+               <p> {{neb.resider}} </p>
+            </div>
+               
+            {% endfor %}
+               
+               
+            {% endif %}
+               </div>
+       
             
        {% endfor %}
            
            
        {% endif %}
 
-       <a href="{% url 'update' %}">Update Profile</a>
+     
            
    </div>
 {% endblock content %}
-    

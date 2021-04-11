@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load bootstrap4 %}
+{% block content %}
+  <h2>Update</h2>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-5">
+             <form action="{% url 'business' %}" method="post">
+                 {% csrf_token %}
+                 {% bootstrap_form form %}
+
+                 <input type="submit" value="Post Business">
+             </form>
+             <a class="btn-btn-success" href="{% url 'neigbor' %}">Add Another Neighbor Hood</a>
+          </div>
+      </div>
+  </div>
+{% endblock content %}
+
+email
+neighborHood

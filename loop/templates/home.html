@@ -3,5 +3,61 @@
 
 {% block content %}
     <h2>Welcome home</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Businesses</h2>
+                {% if business %}
+                
+                {% for biz in  business %}
+                   <div class="card">
+                       <img src="{{biz.business_image.url}}" style="height: 20vmin; width: 100%;" alt="">
+                    <p>Business name :  {{biz.business_name}} </p>
+                    <p>Owner : {{biz.owner}} </p>
+                    <p>Email : {{biz.business_email}} </p>
+                    <p>Neighborhood : {{biz.neighborhood}} </p>
+                    <hr>
+                   </div>
+
+
+                {% endfor %}    
+                
+                {% else %}
+                <h2>No businesses posted yet!</h2>
+                {% endif %}
+                    
+            </div>
+            <div class="col-md-4">
+                <h1>Neighbors</h1>
+                <div class="card">
+                   
+                {% for profile in profiles %}
+                <p>{{profile.user.username}} </p>
+                <p> {{profile.email}} </p>
+                <p> {{profile.neighborHood}} </p>
+                <hr>
+                {% endfor %}
+
+                </div>
+                
+            </div>
+            <div class="col-md-4">
+                <h2>Neighborhoods</h2>
+                <div class="card">
+                   
+                    
+                    {% for neb in neighborhoods %}
+                    <p>{{neb.name}} </p>
+                    <p>{{neb.location}} </p>
+                    <p>{{neb.occupants}} </p>
+                    <hr>
+                        
+                    {% endfor %}
+                        
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
-    
+
+
