@@ -16,11 +16,13 @@
        <p>Email :  <a href="{{profile.email}}">{{profile.email}}</a> </p>    
        <p>Neighborhood : {{profile.location.name}} </p>
        <p>Location : {{profile.location.location}} </p>
+      
         
         <p class="text-muted">Bio : {{profile.bio}} </p>
  
-        <p><a href="{% url 'business' %}">Add Bussiness</a>
-         <p><a href="{% url 'neigbor' %}">Add Neighbor Hood</a>
+        <p><a href="{% url 'business' %}">Add Bussiness</a></p>
+         <p><a href="{% url 'neigbor' %}">Add Neighbor Hood</a></p>
+         <p><a href="{% url 'create_post' %}">Create Post</a></p>
 
         
         <div class="card" style="width: 15rem;">

@@ -47,11 +47,8 @@
                    
                     
                     {% for neb in neighborhoods %}
-                    <p>{{neb.name}} </p>
-                    <p>{{neb.location}} </p>
-                    <p>{{neb.occupants}} </p>
-                    <hr>
-                        
+                    <p><a href="{% url 'single_hood' neb.id %}">{{neb.name}}</a> </p>
+                    <hr>                        
                     {% endfor %}
                         
                 </div>
