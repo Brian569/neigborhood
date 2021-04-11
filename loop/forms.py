@@ -19,3 +19,11 @@ class NeighborHoodForm(forms.ModelForm):
         model = NeighborHood
         fields = ['name', 'location']
         exclude = ['resider']
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Posts
+        fields = ['title', 'content']
+        exclude = ['owner']
+
+        
