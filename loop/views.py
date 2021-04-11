@@ -25,10 +25,17 @@ def profile(request, prof_id):
     
     profile = profileUser.objects.filter(user=prof_id)
     business = Bussiness.objects.filter(owner=prof_id)
-    neighborhood = NeighborHood.objects.all()
+    neighborhood = NeighborHood.objects.filter(resider=prof_id)
 
     return render(request, 'profile.html', {"profile": profile, 'business' : business, 'neighborhood' : neighborhood})
 
+
+@login_required
+def single_hood(request, neib_id):
+    hood = NeighborHood.objects.filter(pk  = neib_id)
+    business = Bussiness.objects.filter(neighborhood=neib_id)
+
+    return render(request, 'single_hood.html', {'hoods' : hood, 'business' : business})
 
 
 @login_required
@@ -109,3 +116,29 @@ def create_neigborhood(request):
         form = NeighborHoodForm()
 
     return render(request, 'neighbor.html', {'form' : form})
+
+@login_required
+def posts(request):
+    posts = Posts.objects.all()
+
+    return render(request, 'posts.html', {'posts': posts})
+
+@login_required
+def create_post(request):
+    current_user = request.user
+
+    profile = profileUser.objects.get(user=current_user)
+
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.owner = current_user
+            post.save()
+
+        return redirect('posts',)
+
+    else:
+        form = PostForm()
+
+    return render(request, 'new_posts.html', {'form' : form})
