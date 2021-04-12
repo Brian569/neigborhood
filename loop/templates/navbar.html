@@ -1,19 +1,106 @@
-<nav>
+
+<nav class="navbar">
+    <div class="logo">
+        <h2>NEIGHLERT</h2>
+    </div>
     <ul>
         
-
-        
         {% if user.is_authenticated %}
-        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">Home</a></li>
+        <li><a href="{% url 'home' %}">All</a></li>
+        <li style="text-transform: uppercase;"><a href="{% url 'profile'  user.id %}"> {{user.username}} </a></li>
         <li><a href="{% url 'posts' %}">Posts</a></li>
-        <li><a href="{% url 'create_post' %}">Add Post</a></li>
-        <li><a href="{% url 'home' %}">All Businesses</a></li>
-        <li><a href="{% url 'profile'  user.id %}"> {{user.username}} </a></li>
-       
+        <div class="dropdown">
+            <button class="dropbtn">More</button><span class="material-icons">
+                keyboard_arrow_down
+                </span>
+            <div class="dropdown-content">
+                <a href="{% url 'create_post' %}">Add Post</a>
+                <a href="{% url 'my_business' user.id%}">My Businesses</a>
+                <a href="{% url 'centers' %}">Health Centers</a>
+                <a href="{% url 'police' %}">Police Centers</a>
+            </div>
+        </div>
+        <li><a href="{% url 'about' %}"></a></li>
         <li><a href="{% url 'logouts' %}">Logout</a></li>
         {% else %}
         <li><a href="{% url 'login' %}">Login</a></li>
         {% endif %}
             
-        
     </ul>
+</nav>
+
+
+<style>
+    .logo{
+        font-family: 'Playball', cursive;
+        margin-left: 10vmin;
+        font-size: 1.3rem;
+    }
+.navbar ul li{
+    display: inline-block;
+    text-align: center;
+    font-weight: 700;  
+    padding: 10px;  
+}
+.navbar ul li a{
+    color: #2c2566;
+}
+.navbar ul li a:hover{
+    color: #2c2566;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+.navbar{
+    margin-top: 5vmin;
+}
+.navbar ul{
+    margin-right: 40vmin;
+    text-align: center;
+    
+    font-size: 1rem;
+}
+
+.dropbtn {
+  color: #2c2566;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  font-weight: 700;    
+  background: transparent;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-radius: 12px;
+  z-index: 1;
+  background: #fff;
+  
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: #2c2566;
+  font-weight: 700; 
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+</style>

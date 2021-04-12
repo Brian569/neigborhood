@@ -2,20 +2,53 @@
 
 {% load bootstrap4 %}
 {% block content %}
-  <h2>Update</h2>
+  <h2>Customize Profile</h2>
   <div class="container">
       <div class="row">
-          <div class="col-md-5">
+         <div class="col-md-3"></div>
+        
+          <div class="col-md-6">
              <form action="{% url 'update' %}" enctype="multipart/form-data" method="post">
                  {% csrf_token %}
                  {% bootstrap_form form %}
-
-                 <input type="submit" value="Update">
+                <small class='text-muted'>You have to create a neighborhood to create a business </small> <br>
+                <small class='text-muted'>If your neighborhood is not on the list, go to profile and create it first before updating profile!</small> <br>
+                 <input class="btn" type="submit" value="UPDATE">
+                
              </form>
           </div>
+
+          <div class="col-md-3"></div>
       </div>
   </div>
-{% endblock content %}
 
-email
-neighborHood
+  <style>
+      .btn{
+        background-color: #2c2566;
+        border-radius: 14px;
+        color: aliceblue;
+
+     }
+     .btn a{
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #fff;
+     }
+     .btn:hover{
+      background-color: aliceblue;
+        border-radius: 14px;
+        color: #2c2566;
+     }
+     .btn a:hover{
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #2c2566;
+     }
+     h2{
+        text-align: center;
+     }
+     
+  </style>
+{% endblock content %}

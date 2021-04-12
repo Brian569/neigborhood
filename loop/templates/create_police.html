@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load bootstrap4 %}
+{% block content %}
+  <h2>Add Police Center</h2>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+             <form action="{% url 'create_police'%}" enctype="multipart/form-data" method="post">
+                 {% csrf_token %}
+                 {% bootstrap_form form %}
+               
+                 <input class="btn" type="submit" value="Update">
+                 <br><br><br>
+             </form>
+          </div>
+
+          <div class="col-md-3"></div>
+      </div>
+  </div>
+
+  <style>
+      h2{
+          text-align: center;
+      }
+       .btn {
+           margin-top: 5vmin;
+       text-decoration: none;
+       text-transform: uppercase;
+       font-weight: 700;
+       color: #fff;
+       border-radius: 14px;
+       background: #2c2566;
+    }
+    .btn:hover{
+     background-color: aliceblue;
+       border-radius: 14px;
+       color: #2c2566;
+    }
+    .btn:hover{
+       text-decoration: none;
+       text-transform: uppercase;
+       font-weight: 700;
+       color: #2c2566;
+    }
+    form input{
+        display: inline-block;
+
+    }
+    form textarea{
+        float: right;
+        z-index: 1;
+    }
+  </style>
+{% endblock content %}
+

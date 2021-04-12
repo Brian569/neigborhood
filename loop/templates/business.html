@@ -2,21 +2,58 @@
 
 {% load bootstrap4 %}
 {% block content %}
-  <h2>Update</h2>
+  <h2>Add Your business</h2>
   <div class="container">
       <div class="row">
-          <div class="col-md-5">
-             <form action="{% url 'business' %}" method="post">
-                 {% csrf_token %}
-                 {% bootstrap_form form %}
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <form action="{% url 'business' %}" enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                {% bootstrap_form form %}
 
-                 <input type="submit" value="Post Business">
-             </form>
-             <a class="btn-btn-success" href="{% url 'neigbor' %}">Add Another Neighbor Hood</a>
+                <input class="btn" type="submit" value="Post Business">
+            </form>         
           </div>
+          
+          <div class="col-md-4"></div>
       </div>
   </div>
+
+  <style>
+      form input{
+          display: inline-block;
+      }
+      .btn{
+        background-color: #2c2566;
+        border-radius: 14px;
+        color: aliceblue;
+     }
+     .btn a{
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #fff;
+     }
+     .btn:hover{
+      background-color: aliceblue;
+        border-radius: 14px;
+        color: #2c2566;
+     }
+     .btn a:hover{
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #2c2566;
+     }
+     h2{
+        color: #2c2566;
+        font-size: 2rem;
+        text-align: center;
+      
+     }
+     .col-md-4{
+         margin-bottom: 6%;
+     }
+  </style>
 {% endblock content %}
 
-email
-neighborHood

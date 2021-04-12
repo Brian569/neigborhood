@@ -6,12 +6,16 @@ from django.contrib.auth import logout
 
 
 @login_required
-def home(request):
-    business = Bussiness.objects.all()
-    profiles = profileUser.objects.all()
-    neighborhoods = NeighborHood.objects.all()
+def about(request):
 
-    context = {'business': business, 'profiles': profiles, 'neighborhoods': neighborhoods}
+    return render(request, 'about.html')
+
+@login_required
+def home(request):
+    business = Bussiness.objects.all().order_by('-id')
+    neighborhoods = NeighborHood.objects.all().order_by('-id')
+
+    context = {'business': business, 'neighborhoods': neighborhoods}
 
     return render(request, 'home.html', context)
 
@@ -36,6 +40,18 @@ def single_hood(request, neib_id):
     business = Bussiness.objects.filter(neighborhood=neib_id)
 
     return render(request, 'single_hood.html', {'hoods' : hood, 'business' : business})
+
+@login_required
+def single_business(request, biz_id):
+    biz = Bussiness.objects.filter(pk = biz_id)
+
+    return render(request, 'single_biz.html', {'biz': biz})
+
+@login_required
+def single_neighbor(request, neg_id):
+    neighbor = profileUser.objects.filter(user=neg_id)
+
+    return render(request,'single_neighbor.html', {'neighbor': neighbor})
 
 
 @login_required
@@ -80,7 +96,7 @@ def business(request):
     profile = profileUser.objects.get(user=current_user)
 
     if request.method == 'POST':
-        form = BussinessForm(request.POST)
+        form = BussinessForm(request.POST, request.FILES)
 
         if form.is_valid():
             business = form.save(commit=False)
@@ -102,7 +118,7 @@ def create_neigborhood(request):
     profile = profileUser.objects.get(user=current_user)
 
     if request.method == 'POST':
-        form = NeighborHoodForm(request.POST)
+        form = NeighborHoodForm(request.POST, request.FILES)
 
         if form.is_valid():
             hood = form.save(commit=False)
@@ -119,7 +135,7 @@ def create_neigborhood(request):
 
 @login_required
 def posts(request):
-    posts = Posts.objects.all()
+    posts = Posts.objects.all().order_by('-id')
 
     return render(request, 'posts.html', {'posts': posts})
 
@@ -130,7 +146,7 @@ def create_post(request):
     profile = profileUser.objects.get(user=current_user)
 
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.owner = current_user
@@ -142,3 +158,54 @@ def create_post(request):
         form = PostForm()
 
     return render(request, 'new_posts.html', {'form' : form})
+
+@login_required
+def create_health(request):
+    current_user = request.user
+    profile = profileUser.objects.get(user=current_user)
+
+    if  request.method == 'POST':
+        form = HealthForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            health =  form.save(commit=False)
+            health.resider = current_user
+            health.save()
+
+            return redirect('centers')
+
+    else:
+        form = HealthForm()
+
+    return render(request, 'health.html', {'form': form})
+
+@login_required
+def centers(request):
+    health = Health.objects.all().order_by('-id')
+
+    return render(request, 'centers.html', {'health': health})
+
+@login_required
+def police(request):
+    police = Police.objects.all().order_by('-id')
+
+    return render(request, 'police.html', {'police': police})
+
+@login_required
+def create_police(request):
+    current_user = request.user
+    profile = profileUser.objects.get(user=current_user)
+
+    if request.method == 'POST':
+        form = PoliceForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            police = form.save(commit=False)
+            police.save()
+
+            return redirect('police')
+
+    else:
+        form = PoliceForm()
+
+    return render(request, 'create_police.html', {'form': form})

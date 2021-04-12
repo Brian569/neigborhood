@@ -17,7 +17,7 @@
                 <form action="{% url 'login' %}" method="post">
                     {% csrf_token %}
                     {% bootstrap_form form %}
-                    <input type="submit" class="btn btn-outline-success" value="login">
+                    <input type="submit" class="btn" value="LOGIN">
                     <input type="hidden" value="{{next}}">
                 </form>
                 <small class="text-muted">
@@ -28,5 +28,31 @@
             <div class="col-md-4"></div>
         </div>
     </div>
+
+    <style>
+        .btn{
+        background-color: #2c2566;
+        border-radius: 14px;
+        color: aliceblue;
+     }
+     .btn a{
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #fff;
+     }
+     .btn:hover{
+      background-color: aliceblue;
+        border-radius: 14px;
+        color: #2c2566;
+     }
+     .btn a:hover{
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #2c2566;
+     }
+     
+    </style>
 {% endblock content %}
     

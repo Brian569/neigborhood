@@ -2,18 +2,48 @@
 
 {% load bootstrap4 %}
 {% block content %}
-  <h2>Update</h2>
+  <h2 class="h2">Create Posts</h2>
   <div class="container">
       <div class="row">
-          <div class="col-md-5">
-             <form action="{% url 'create_post' %}" enctype="multipart/form-data" method="post">
-                 {% csrf_token %}
-                 {% bootstrap_form form %}
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <form action="{% url 'create_post' %}" enctype="multipart/form-data" method="post">
+               {% csrf_token %}
+               {% bootstrap_form form %}
 
-                 <input type="submit" value="Post">
-             </form>
+               <input class="btn" type="submit" value="Post">
+               
+           </form>
           </div>
+          <div class="col-md-4"></div>
       </div>
   </div>
+<style>
+     .btn {
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #fff;
+        border-radius: 14px;
+        background: #2c2566;
+     }
+     .btn:hover{
+      background-color: aliceblue;
+        border-radius: 14px;
+        color: #2c2566;
+     }
+     .btn:hover{
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #2c2566;
+     }
+     .h2{
+        color: #2c2566;
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: 800;
+     }
+   </style>
 {% endblock content %}
 

@@ -1,31 +1,74 @@
 {% extends 'base.html' %}
-
 {% load bootstrap4 %}
 {% block content %}
 
-{% for hood in hoods %}
-  <h2>{{hood.name}}</h2>
   <div class="container">
-      <div class="row">
-          <div class="col-md-5">
-            <p>Location : {{hood.location}} </p>
-                             
-            {% endfor %}
+    {% for hood in hoods %}
+    <div class="row">
 
-            <h4>Businesses on My Hood</h4>
-            
-            {% if business %}
-            {% for biz in business %}
-            <p> {{biz.business_name}} </p>
-              
-            {% endfor %}
-              
-            {% endif %}
-              
-              
-                 
-          </div>
+      <div class="col-md-3">
+        <h4>{{hood.name}} Neighborhood</h4>
+        <p>location : {{hood.location}}</p>
+        <img src=" {{hood.image.url}} " style="width: 100%; border-radius: 12px; height: 20vmin; margin-bottom: 5vmin;"  alt="">
+        <p><b>Residers :</b>
+          <ul>
+            <li>{{hood.resider}} </li>
+          </ul>
+        </p>
       </div>
+      {% endfor %}
+      <div class="col-md-9">
+        <h3>Businesses in This Neighborhood</h3>
+        <hr>
+        {% if business %}
+          {% for biz in business %}
+           <div class="row">
+             <div class="col-md-6">
+               
+               <img style="width: 100%; border-radius: 12px; height: 20vmin; margin-bottom: 5vmin;" src=" {{biz.business_photo.url}} " alt="">
+              <br>
+              </div>
+             <br>
+             <div class="col-md-6">
+               
+               <h4>
+                <a href="{% url 'single_business' biz.id %}"> {{biz.business_name}}</a>
+               </h4>
+               <p>Owned by <i><b>{{biz.owner}} </b></i></p>
+               <p>Email <a href="{{biz.business_email}} "> {{biz.business_email}} </a> </p>
+             </div>
+           </div>   
+            
+          {% endfor %}
+          {% else %}
+          <h3 style="color: red;">
+            Sorry, there are no businesses yet..
+          </h3>
+      
+    {% endif %}
+      </div>
+    </div>
+
   </div>
+
+  <style>
+    h4 a{
+      text-decoration: none;
+      font-size: 1.5rem;
+    }
+    h4 a:hover{
+      text-decoration: none;
+    }
+    h3, h4{
+      color: #2c2566;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    h3{
+      text-align: center;
+    }
+    
+  </style>
 {% endblock content %}
+
 

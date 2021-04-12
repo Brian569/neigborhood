@@ -5,22 +5,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playball&family=Rock+Salt&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
 
     
+    <title>Document</title>
+   
     {% block styles %}
         {%bootstrap_css %}
     {% endblock styles %}
         
 </head>
-<body>
-    {% include 'navbar.html' %}
-
-    
-    {% block content %}
-        
-    {% endblock content %}
-        
-    
+<body> 
+      <div class="container-fluid">
+        {% include 'navbar.html' %}
+        {% block content %}
+        {% endblock content %}
+      </div>
+  
 </body>
 </html>
+
+<style>
+     h2{
+        color: #2c2566;
+        font-size: 1.8rem;
+        font-weight: 800;
+     }
+  
+</style>

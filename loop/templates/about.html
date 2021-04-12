@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% load bootstrap4 %}
+
+
+{% block content %}
+  <div class="container">
+      <h4>Get updates of everything in your neighborhood. </h4>
+      <p>From businesses, health centers , police stations and who lives in your hood.</p>
+      <p>Neighlert helps you stay in the now about what's happening in your area</p>
+
+      <!-- <form action="" method="post">
+          {% csrf_token %}
+          <input type="text" class="input" name="search">
+          
+          <button type="submit" class="btn" ><span class="material-icons">
+            search
+            </span></button>
+      </form><br> -->
+      <div class="row">
+          <div class="col-md-3">
+              <div class="card">
+                <img src="https://www.moneycrashers.com/wp-content/uploads/2018/12/tips-find-best-neighborhood-live-in-1068x713.jpg" alt="">
+                <div class="card-content">
+                    <p>See who lives near you</p>
+                </div>
+      
+              </div>
+            </div>
+          <div class="col-md-3">
+              <div class="card">
+                <img src="https://img.youtube.com/vi/BZc9A_R_jsI/0.jpg" alt="">
+                <div class="card-content">
+                    <p>Get news news as soon they happen</p>
+                </div>
+              </div>
+              
+          </div>
+          <div class="col-md-3">
+              <div class="card">
+                <img src="https://www.thestatesman.com/wp-content/uploads/2019/04/Physics-and-business.jpg" alt="">
+                <div class="card-content">
+                    <p>know the businesses arround you</p>
+                </div>
+     
+              </div>
+            </div>
+          <div class="col-md-3">
+              <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuS5T0dBCzxUvY3q37N8Qi0Fyu7gz5Xp7ArWtVQW1u3BlQMbuJDMyUQFNBn-r-fGQ3tws&usqp=CAU" alt="">
+                <div class="card-content">
+                    <p>Know events happening in your  neighborhood</p>
+                </div>
+              </div>
+
+          </div>
+      </div>
+      <br><br><br><br>
+  </div>
+
+
+  <style>
+      .container{
+          width: 100%;
+          position: absolute;
+          text-align: center;
+          color: #2c2566;
+          
+          margin-bottom: 5%;
+      }
+      .container h4{
+        font-weight: 700;
+        font-size: 7vmin;
+      }
+      form .input{
+          margin-right: 0;
+          width: 50%;
+          border: none;
+          background-color: #2c25666d;
+          border-radius: 20vmin;
+          height: 7vmin;
+          color: black;
+          overflow: hidden;
+
+      }
+      form .input:hover{
+          border: none;
+         
+      }
+      form input{
+          background: #2c2566;
+          color: #fff;
+      }
+      .card{
+          margin-top: 8vmin;
+          border: none;
+      }
+
+      .card img{
+          width: 35vmin;
+          height: 30vmin;
+          border-radius: 14px;
+          
+      }
+      
+  </style>
+
+{% endblock content %}
+    
