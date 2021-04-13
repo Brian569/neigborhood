@@ -5,6 +5,7 @@ from .views import (home, logout_view,
     create_post, single_hood, create_health,
     centers, police, create_police, about,
     single_business, single_neighbor,
+    delete_hood
      )
 
 urlpatterns = [
@@ -25,4 +26,5 @@ urlpatterns = [
     path('create_police/', create_police, name = 'create_police'),
     re_path(r'single_business/(\d+)', single_business, name = 'single_business'),
     re_path(r'single_neighbor/(\d+)', single_neighbor, name = 'single_neighbor'),
+    re_path(r'delete/(\d+)', delete_hood, name = 'delete_hood')
 ]

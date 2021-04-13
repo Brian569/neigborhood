@@ -42,6 +42,11 @@ def single_hood(request, neib_id):
     return render(request, 'single_hood.html', {'hoods' : hood, 'business' : business})
 
 @login_required
+def delete_hood(request, neib_id):
+    leave = NeighborHood.objects.filter(pk = neib_id)
+
+    return render(request, 'single_hood.html', {'leave': leave})
+@login_required
 def single_business(request, biz_id):
     biz = Bussiness.objects.filter(pk = biz_id)
 

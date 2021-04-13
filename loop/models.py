@@ -48,7 +48,6 @@ class profileUser(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
     def save_user(self):
-
         self.save()
 
     def __str__(self):
@@ -62,6 +61,14 @@ class Posts(models.Model):
 
     def __str__(self):
         return self.title
+
+    @classmethod
+    def get_post(cls):
+        posts = Posts.objects.all()
+
+        return posts
+
+
 
 class Health(models.Model):
     name = models.CharField(max_length=100, blank=True)
