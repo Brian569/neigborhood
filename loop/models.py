@@ -4,7 +4,7 @@ from cloudinary.models import CloudinaryField
 
 class NeighborHood(models.Model):
     name = models.CharField(max_length=100, blank=True)
-    image = CloudinaryField(blank=True)
+    image = CloudinaryField('image')
     location = models.CharField(max_length=100, blank=True)
     resider = models.ForeignKey('profileUser', on_delete=models.CASCADE, null= True)
     
@@ -19,7 +19,7 @@ class NeighborHood(models.Model):
 
 
 class Bussiness(models.Model):
-    business_photo = CloudinaryField(blank=True)
+    business_photo = CloudinaryField('image')
     business_name = models.CharField(max_length=100, blank=True)
     neighborhood = models.ForeignKey(NeighborHood, on_delete=models.CASCADE, blank=True, null=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
@@ -39,7 +39,7 @@ class Bussiness(models.Model):
 
 class profileUser(models.Model):
     profile_name = models.CharField(max_length=100, blank=True)
-    profile_pic = CloudinaryField('image', blank=True)
+    profile_pic = CloudinaryField('image')
     email = models.EmailField(blank=True)
     bio = models.CharField(max_length=1000, blank=True)
 
@@ -65,7 +65,7 @@ class Posts(models.Model):
 
 class Health(models.Model):
     name = models.CharField(max_length=100, blank=True)
-    picture = CloudinaryField('image', blank=True)
+    picture = CloudinaryField('image')
     email = models.EmailField(blank=True)
     neighborhood = models.ForeignKey(NeighborHood, on_delete=models.CASCADE, null=True)
     phone_number = models.IntegerField( blank=True)
@@ -76,7 +76,7 @@ class Health(models.Model):
         return self.name
 
 class Police(models.Model):
-    image = CloudinaryField('image', blank=True)
+    image = CloudinaryField('image')
     name = models.CharField(max_length=100, blank=True)
     neigborhood = models.ForeignKey(NeighborHood, on_delete=models.CASCADE, null= True)
     email = models.EmailField(blank=True)

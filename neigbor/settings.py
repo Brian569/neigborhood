@@ -82,15 +82,12 @@ WSGI_APPLICATION = 'neigbor.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DB_NAME', 'postgres'),
-        'USER' : os.environ.get('DB_USER', 'postgres'),
-        'PASSWORD' : os.environ.get('DB_PASSWORD', 'password'),
-        'HOST' : os.environ.get('DB_HOST', 'localhost'),
-        'PORT' : os.environ.get('BD_PORT', '5432')
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-# 
+
+# postgres://muvxiwnjymfzwz:115966b18d591aa333e6bc459afbe378252106e88d6b7c3f88c8d28e87e232ff@ec2-18-206-20-102.compute-1.amazonaws.com:5432/d9hgo1cstvegfg
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 

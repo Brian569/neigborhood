@@ -11,9 +11,7 @@
         <li style="text-transform: uppercase;"><a href="{% url 'profile'  user.id %}"> {{user.username}} </a></li>
         <li><a href="{% url 'posts' %}">Posts</a></li>
         <div class="dropdown">
-            <button class="dropbtn">More</button><span class="material-icons">
-                keyboard_arrow_down
-                </span>
+            <button class="dropbtn">More</button>
             <div class="dropdown-content">
                 <a href="{% url 'create_post' %}">Add Post</a>
                 <a href="{% url 'my_business' user.id%}">My Businesses</a>

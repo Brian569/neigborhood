@@ -4,8 +4,8 @@ from .models import *
 class ProfileupdateForm(forms.ModelForm):
     class Meta:
         model = profileUser
-        fields = ['profile_name', 'profile_pic', 'email', 'location', 'bio']
-        exclude = ['user']
+        fields = ['profile_name', 'profile_pic', 'email', 'bio']
+        exclude = ['user', 'location']
 
 
 class BussinessForm(forms.ModelForm):

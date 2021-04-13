@@ -82,6 +82,28 @@ def updataProfile(request):
     return render(request, 'update.html', {'form' : form})
 
 @login_required
+def create_neigborhood(request):
+
+    current_user = request.user
+    profile = profileUser.objects.get(user=current_user)
+
+    if request.method == 'POST':
+        form = NeighborHoodForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            hood = form.save(commit=False)
+            hood.resider = profile
+            hood.save()
+            print(hood)
+
+            return redirect('profile', current_user.id)
+        
+    else:
+        form = NeighborHoodForm()
+
+    return render(request, 'neighbor.html', {'form' : form})
+
+@login_required
 def my_business(request, biz_id):
     business = Bussiness.objects.filter(owner=biz_id)
     hood = NeighborHood.objects.filter(resider=biz_id)
@@ -111,27 +133,6 @@ def business(request):
     return render(request, 'business.html', {'form' : form})
 
 
-@login_required
-def create_neigborhood(request):
-
-    current_user = request.user
-    profile = profileUser.objects.get(user=current_user)
-
-    if request.method == 'POST':
-        form = NeighborHoodForm(request.POST, request.FILES)
-
-        if form.is_valid():
-            hood = form.save(commit=False)
-            hood.resider = current_user
-            hood.save()
-            print(hood)
-
-            return redirect('profile', current_user.id)
-        
-    else:
-        form = NeighborHoodForm()
-
-    return render(request, 'neighbor.html', {'form' : form})
 
 @login_required
 def posts(request):

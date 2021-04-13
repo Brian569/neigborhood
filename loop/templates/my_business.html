@@ -12,13 +12,13 @@
                 {% if business %}
                 
                 {% for biz in  business %}
-                   <div class="n" style="display: inline-block; width: 30vmin;">
+                   <div class="n" style="display: inline-block; width: 50vmin;">
                        <img src=" {{biz.business_photo.url}} " alt="">
                        <br><br>
                        <p><span> Business name : </span>{{biz.business_name}} </p>
                        <p><span>Owner :</span> {{biz.owner.username}} </p>
                        <p><span>Email :</span> <a href="{{biz.business_email}} ">{{biz.business_email}} </a></p>    
-                       <a href="" class="btn btn-outline-dark btn-sm m-1">Details</a>
+                       <a href="{% url 'single_business' biz.id%}" class="btn btn-outline-dark btn-sm m-1">Details</a>
                        <br><br>                    
                        <div class="card-footer">
                         <a class="btn" href="{% url 'business' %}">Post Business</a>
