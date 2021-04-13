@@ -1,4 +1,4 @@
-release python manage.py makemigrations
-release python manage.py migrate
+release python# manage.py makemigrations
+release python# manage.py migrate
 
-web: gunicorn neighbor.wsgi
+web: gunicorn neigbor.wsgi
