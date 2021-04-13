@@ -2,7 +2,7 @@ from django.test import TestCase
 
 from .models import *
 
-class NeighborhoodTest(TestCase):
+class ProfileTest(TestCase):
 
     def setUp(self):
 
@@ -14,18 +14,21 @@ class NeighborhoodTest(TestCase):
     
     def get_profile(self):
         self.profile.save()
-        profile = profileUser.get_profile()
+        profile = profileUser.save_user()
         self.assertTrue(len(profile) > 0)
-
-
+    
 class PostTest(TestCase):
-    def instance(self):
-        self.posts = Posts.objects.create(owner='bmn', title='you won', content='alright man')
 
+    def setUp(self):
+         self.posts = Posts.objects.create(owner='bmn', title='you won', content='alright man')
+
+    def save_post(self):
+        self.posts.save()
+
+    def instance(self):      
         self.assertTrue(isinstance(self.posts, Posts))
 
     def tearDown(self):
          self.posts = Posts.objects.create(owner='bmn', title='you won', content='alright man')
-         self.posts.save()
-         print(self.posts)
+ 
          self.posts.delete()        
